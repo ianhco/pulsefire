@@ -21,7 +21,7 @@ hide:
     Pulsefire can be directly used from GitHub by cloning the repository into a subfolder of your project root which might be useful if you want to use the very latest version:
 
     ```sh
-    git clone https://github.com/iann838/pulsefire.git
+    git clone https://github.com/ianhco/pulsefire.git
     ```
 
     Next, install its dependencies with:

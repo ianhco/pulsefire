@@ -24,9 +24,8 @@ if sys.version_info < (3, 12):
 setup(
     name="pulsefire",
     version="2.0.28",
-    author="Jian Huang",
-    author_email="iann838dev@gmail.com",
-    url="https://github.com/iann838/pulsefire",
+    author="Ian Huang",
+    url="https://github.com/ianhco/pulsefire",
     description="A modern and flexible Riot Games Python SDK.",
     long_description=long_description,
     long_description_content_type='text/markdown',

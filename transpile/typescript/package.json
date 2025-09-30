@@ -8,10 +8,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/iann838/pulsefire.git"
+        "url": "https://github.com/ianhco/pulsefire.git"
     },
     "bugs": {
-        "url": "https://github.com/iann838/pulsefire/issues"
+        "url": "https://github.com/ianhco/pulsefire/issues"
     },
-    "homepage": "https://github.com/iann838/pulsefire"
+    "homepage": "https://github.com/ianhco/pulsefire"
 }
