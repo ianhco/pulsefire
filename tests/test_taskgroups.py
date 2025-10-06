@@ -11,7 +11,7 @@ from pulsefire.taskgroups import TaskGroup
 async def test_taskgroup():
     async with RiotAPIClient(default_headers={"X-Riot-Token": os.environ["RIOT_API_KEY"]}) as client:
         plat_league = await client.get_lol_league_v4_entries_by_division(region="na1", queue="RANKED_SOLO_5x5", tier="PLATINUM", division="IV")
-        summoner = await client.get_lol_summoner_v4_by_id(region="na1", id=plat_league[0]["summonerId"])
+        summoner = await client.get_lol_summoner_v4_by_puuid(region="na1", puuid=plat_league[0]["puuid"])
         match_ids = await client.get_lol_match_v5_match_ids_by_puuid(region="americas", puuid=summoner["puuid"])
 
         async with TaskGroup() as tg:
@@ -27,7 +27,7 @@ async def test_taskgroup():
 async def test_taskgroup_semaphore():
     async with RiotAPIClient(default_headers={"X-Riot-Token": os.environ["RIOT_API_KEY"]}) as client:
         plat_league = await client.get_lol_league_v4_entries_by_division(region="na1", queue="RANKED_SOLO_5x5", tier="PLATINUM", division="IV")
-        summoner = await client.get_lol_summoner_v4_by_id(region="na1", id=plat_league[0]["summonerId"])
+        summoner = await client.get_lol_summoner_v4_by_puuid(region="na1", puuid=plat_league[0]["puuid"])
         match_ids = await client.get_lol_match_v5_match_ids_by_puuid(region="americas", puuid=summoner["puuid"])
 
         async with TaskGroup(asyncio.Semaphore(100)) as tg:

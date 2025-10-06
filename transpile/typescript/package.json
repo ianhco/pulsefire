@@ -1,7 +1,7 @@
 {
     "name": "pulsefire-types",
     "version": "REPLACE_ON_CI",
-    "author": "Jian Huang",
+    "author": "Ian Huang",
     "license": "MIT",
     "files": [
         "./schemas.ts"

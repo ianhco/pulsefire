@@ -11,7 +11,8 @@ class CDragonSchema:
     LolV1ChampionTacticalInfo = TypedDict("LolV1ChampionTacticalInfo", {
         "style": int,
         "difficulty": int,
-        "damageType": str
+        "damageType": str,
+        "attackType": str
     })
     LolV1ChampionPlaystyleInfo = TypedDict("LolV1ChampionPlaystyleInfo", {
         "damage": int,
@@ -63,6 +64,8 @@ class CDragonSchema:
         "skinLines": None | list[LolV1ChampionSkinLine],
         "description": str | None,
         "chromas": NotRequired[list[LolV1ChampionSkinChroma]],
+        "previewVideoUrl": str | None,
+        "skinClassification": str,
     })
     LolV1ChampionPassive = TypedDict("LolV1ChampionPassive", {
         "name": str,
@@ -109,6 +112,10 @@ class CDragonSchema:
         "ammo": LolV1ChampionSpellAmmo,
         "maxLevel": int
     })
+    LolV1ChampionTagInfo = TypedDict("LolV1ChampionTagInfo", {
+        "championTagPrimary": str,
+        "championTagSecondary": str
+    })
     LolV1Champion = TypedDict("LolGameDataV1Champion", {
         "id": int,
         "name": str,
@@ -121,6 +128,8 @@ class CDragonSchema:
         "stingerSfxPath": str,
         "chooseVoPath": str,
         "banVoPath": str,
+        "championTagInfo": LolV1ChampionTagInfo,
+        "isVisibleInClient": bool,
         "roles": list[str],
         "recommendedItemDefaults": list[int],
         "skins": list[LolV1ChampionSkin],
@@ -130,7 +139,6 @@ class CDragonSchema:
     LolChampionBinValueCatalogEntry = TypedDict("LolChampionBinValueCatalogEntry", {
         "contentId": str,
         "itemID": int,
-        "offerId": str,
         "__type": str
     })
     LolChampionBinValueEventsToTrack = TypedDict("LolChampionBinValueEventsToTrack", {
@@ -221,7 +229,7 @@ class CDragonSchema:
         "apiName": str,
         "associatedTraits": list[str],
         "composition": list[str],
-        "desc": str,
+        "desc": str | None,
         "effects": dict[str, float],
         "from": list[int] | None,
         "icon": str,
@@ -244,14 +252,14 @@ class CDragonSchema:
     TftDataTftSetChampionStats = TypedDict("TftDataTftSetChampionStats", {
         "armor": float,
         "attackSpeed": float,
-        "critChance": float,
+        "critChance": float | None,
         "critMultiplier": float,
-        "damage": float,
+        "damage": float | None,
         "hp": float | None,
         "initialMana": float,
         "magicResist": float,
         "mana": float,
-        "range": float
+        "range": float,
     })
     TftDataTftSetChampion = TypedDict("TftDataTftSetChampion", {
         "ability": TftDataTftSetChampionAbility,
@@ -261,7 +269,7 @@ class CDragonSchema:
         "icon": str,
         "name": str,
         "squareIcon": str,
-        "role": None,
+        "role": str | None,
         "stats": TftDataTftSetChampionStats,
         "tileIcon": str,
         "traits": list[str]
@@ -665,7 +673,7 @@ class RiotAPISchema:
         "tokensEarned": int,
     })
     LolClashV1Player = TypedDict("LolClashV1Player", {
-        "summonerId": str,
+        "puuid": str,
         "teamId": str,
         "position": str,
         "role": str,
@@ -700,7 +708,6 @@ class RiotAPISchema:
         "wins": int,
     })
     LolLeagueV4LeagueEntry = TypedDict("LolLeagueV4LeagueEntry", {
-        "summonerId": str,
         "summonerName": NotRequired[str],
         "puuid": str,
         "rank": str,
@@ -714,7 +721,6 @@ class RiotAPISchema:
     })
     LolLeagueV4LeagueFullEntry = TypedDict("LolLeagueV4LeagueFullEntry", {
         "leagueId": str,
-        "summonerId": str,
         "summonerName": NotRequired[str],
         "puuid": str,
         "queueType": str,
@@ -1257,7 +1263,6 @@ class RiotAPISchema:
         "gameCustomizationObjects": NotRequired[list[str]],
         "perks": NotRequired[LolSpectatorV4GameParticipantPerks],
         "puuid": str,
-        "summonerId": str,
         "teamId": int,
         "spell1Id": int,
         "spell2Id": int,
@@ -1290,7 +1295,6 @@ class RiotAPISchema:
         "gameCustomizationObjects": NotRequired[list[str]],
         "perks": NotRequired[LolSpectatorV4GameParticipantPerks],
         "puuid": str,
-        "summonerId": str,
         "teamId": int,
         "spell1Id": int,
         "spell2Id": int,
@@ -1321,8 +1325,6 @@ class RiotAPISchema:
         "gameList": list[LolSpectatorV5Game],
     })
     LolSummonerV4Summoner = TypedDict("SummonerV4Summoner", {
-        "id": str,
-        "accountId": str,
         "puuid": str,
         "name": NotRequired[str],
         "profileIconId": int,
@@ -1333,7 +1335,6 @@ class RiotAPISchema:
     # Teamfight Tactics Types
 
     TftLeagueV1LeagueEntry = TypedDict("TftLeagueV1LeagueEntry", {
-        "summonerId": str,
         "summonerName": NotRequired[str],
         "puuid": str,
         "rank": str,
@@ -1348,7 +1349,6 @@ class RiotAPISchema:
     TftLeagueV1LeagueFullEntry = TypedDict("TftLeagueV1LeagueFullEntry", {
         "leagueId": str,
         "puuid": str,
-        "summonerId": str,
         "summonerName": NotRequired[str],
         "queueType": str,
         "tier": str,
@@ -1448,6 +1448,10 @@ class RiotAPISchema:
         "EventSkill_DemotionProtection": int,
         "EventSkill_PlacementDelta": int,
     })
+    TftMatchV1MatchInfoParticipantEventPve = TypedDict("TftMatchV1MatchInfoParticipantEventPve", {
+        "boss_name": str,
+        "buddy_name": str,
+    })
     TftMatchV1MatchInfoParticipant = TypedDict("TftMatchV1MatchInfoParticipant", {
         "augments": NotRequired[list[str]],
         "companion": TftMatchV1MatchInfoParticipantCompanion,
@@ -1466,6 +1470,9 @@ class RiotAPISchema:
         "riotIdTagline": str,
         "skill_tree": NotRequired[TftMatchV1MatchInfoParticipantSkillTree],
         "partner_group_id": NotRequired[int],
+        "event_pve": TftMatchV1MatchInfoParticipantEventPve,
+        "pve_score": int,
+        "pve_wonrun": int,
         "win": bool,
     })
     TftMatchV1MatchInfo = TypedDict("TftMatchV1MatchInfo", {
@@ -1592,6 +1599,7 @@ class RiotAPISchema:
         "puuid": str,
         "gameName": str,
         "tagLine": str,
+        "prefix": str,
         "leaderboardRank": int,
         "rankedRating": int,
         "numberOfWins": int,

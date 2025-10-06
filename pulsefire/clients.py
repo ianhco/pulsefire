@@ -503,6 +503,9 @@ class RiotAPIClient(BaseClient):
     async def get_tft_league_v1_entries_by_summoner(self, *, region: Region = ..., summoner_id: str = ...) -> list[RiotAPISchema.TftLeagueV1LeagueFullEntry]:
         return await self.invoke("GET", "/tft/league/v1/entries/by-summoner/{summoner_id}")
 
+    async def get_tft_league_v1_entries_by_puuid(self, *, region: Region = ..., puuid: str = ...) -> list[RiotAPISchema.TftLeagueV1LeagueFullEntry]:
+        return await self.invoke("GET", "/tft/league/v1/by-puuid/{puuid}")
+
     async def get_tft_league_v1_challenger_league(self, *, region: Region = ..., queries: dict = {}) -> RiotAPISchema.TftLeagueV1League:
         return await self.invoke("GET", "/tft/league/v1/challenger")
 
