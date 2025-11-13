@@ -89,6 +89,7 @@ async def test_acc_riot_api_client():
         account = await client.get_account_v1_by_riot_id(region="americas", game_name="200", tag_line="16384")
         await client.get_account_v1_by_puuid(region="americas", puuid=account["puuid"])
         await client.get_account_v1_active_shard_by_puuid(region="americas", puuid=account["puuid"], game="val")
+        await client.get_account_v1_active_region_by_puuid(region="americas", puuid=account["puuid"], game="lol")
 
 
 @async_to_sync()
