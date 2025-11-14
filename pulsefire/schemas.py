@@ -638,6 +638,11 @@ class RiotAPISchema:
         "game": str,
         "activeShard": str,
     })
+    AccountV1ActiveRegion = TypedDict("AccountV1ActiveRegion", {
+        "puuid": str,
+        "game": str,
+        "region": str,
+    })
 
     # League of Legends Types
 

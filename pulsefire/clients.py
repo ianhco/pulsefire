@@ -389,6 +389,9 @@ class RiotAPIClient(BaseClient):
     async def get_account_v1_active_shard_by_puuid(self, *, region: Region = ..., puuid: str = ..., game: str = ...) -> RiotAPISchema.AccountV1ActiveShard:
         return await self.invoke("GET", "/riot/account/v1/active-shards/by-game/{game}/by-puuid/{puuid}")
 
+    async def get_account_v1_active_region_by_puuid(self, *, region: Region = ..., puuid: str = ..., game: str = ...) -> RiotAPISchema.AccountV1ActiveRegion:
+        return await self.invoke("GET", "/riot/account/v1/region/by-game/{game}/by-puuid/{puuid}")
+
     # League of Legends Endpoints
 
     async def get_lol_champion_v3_rotation(self, *, region: Region = ...) -> RiotAPISchema.LolChampionV3Rotation:
